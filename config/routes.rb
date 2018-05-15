@@ -7,6 +7,8 @@ Rails.application.routes.draw do
       resources :maps
       resources :tiles
       resources :campaigns
+
+      post '/users/login', to: 'users#login'
     end
   end
 end
