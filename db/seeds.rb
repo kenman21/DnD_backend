@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Tile.destroy_all
+
+
+
+[*0..15].each do |x|
+  [*0..15].each do |y|
+    Tile.create(page: 1, x: (x*16), y: (y*16))
+  end
+end
