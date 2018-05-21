@@ -9,6 +9,9 @@ Rails.application.routes.draw do
       resources :campaigns
 
       post '/users/login', to: 'users#login'
+      resources :users, only: :show do
+        get '/maps', to: 'users#maps'
+      end 
     end
   end
 end
