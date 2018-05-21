@@ -34,7 +34,7 @@ class Api::V1::UsersController < ApplicationController
     maps_array = []
     user.maps.each do |map|
       map_hash = {}
-      map_hash = {name: map.name}
+      map_hash = {id: map.id, name: map.name}
       map_hash[:slots] = map.slots.map {|slot| prepare_slot(slot)}
       maps_array.push(map_hash)
     end
