@@ -11,7 +11,8 @@ Rails.application.routes.draw do
       post '/users/login', to: 'users#login'
       resources :users, only: :show do
         get '/maps', to: 'users#maps'
-      end 
+        post '/characters', to: 'users#characters'
+      end
     end
   end
 end

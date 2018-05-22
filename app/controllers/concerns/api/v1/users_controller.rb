@@ -28,6 +28,12 @@ class Api::V1::UsersController < ApplicationController
     render json: prepare_usermaps(user)
   end
 
+  def characters
+    character = Character.find_by(user_id: params[:user_id], campaign_id: params[:campaign_id])
+    # character == nil ? character = {} : nil
+    render json: character
+  end
+
   private
 
   def prepare_usermaps(user)
