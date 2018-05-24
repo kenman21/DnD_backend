@@ -8,6 +8,11 @@ Rails.application.routes.draw do
       resources :tiles
       resources :campaigns
 
+      resources :campaigns, only: :show do
+        get '/characters', to: 'campaigns#characters'
+      end
+
+
       post '/users/login', to: 'users#login'
       resources :users, only: :show do
         get '/maps', to: 'users#maps'

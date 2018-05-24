@@ -20,4 +20,9 @@ class Api::V1::CampaignsController < ApplicationController
     campaign.destroy()
   end
 
+  def characters
+    campaign = Campaign.find(params[:campaign_id])
+    render json: campaign.characters
+  end
+
 end

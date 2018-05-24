@@ -15,4 +15,13 @@ class Api::V1::CharactersController < ApplicationController
     render json: character
   end
 
+  def update
+    character = Character.find(params[:character_id])
+    params[:charsheet].each do |k,v|
+      character.send("#{k}=",v)
+    end
+    character.save
+    render json: character
+  end
+
 end

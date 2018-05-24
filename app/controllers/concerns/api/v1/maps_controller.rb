@@ -6,7 +6,8 @@ class Api::V1::MapsController < ApplicationController
 
   def create
     map = Map.create(name: params[:name], user_id: params[:user_id])
-    render json: map
+    user = User.find(params[:user_id])
+    render json: prepare_usermaps(user)
   end
 
   def show
@@ -15,8 +16,10 @@ class Api::V1::MapsController < ApplicationController
   end
 
   def destroy
+    user = User.find(params[:user_id])
     map = Map.find(params[:map_id])
     map.destroy()
+    render json: prepare_usermaps(user)
   end
 
   def update
@@ -32,4 +35,28 @@ class Api::V1::MapsController < ApplicationController
       end
     end
   end
+
+  private
+
+  def prepare_usermaps(user)
+    maps_array = []
+    user.maps.each do |map|
+      map_hash = {}
+      map_hash = {id: map.id, name: map.name}
+      map_hash[:slots] = map.slots.map {|slot| prepare_slot(slot)}
+      maps_array.push(map_hash)
+    end
+    maps_array
+  end
+
+  def prepare_slot(slot)
+    slot_hash = {
+      id: slot.id,
+      tile_x: slot.tile.x,
+      tile_y: slot.tile.y,
+      canvas_x: slot.canvasx,
+      canvas_y: slot.canvasy
+    }
+  end
+
 end
