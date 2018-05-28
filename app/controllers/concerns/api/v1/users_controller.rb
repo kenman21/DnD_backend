@@ -53,7 +53,8 @@ class Api::V1::UsersController < ApplicationController
       tile_x: slot.tile.x,
       tile_y: slot.tile.y,
       canvas_x: slot.canvasx,
-      canvas_y: slot.canvasy
+      canvas_y: slot.canvasy,
+      sheet: slot.sheet
     }
   end
 

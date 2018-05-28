@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
       resources :campaigns, only: :show do
         get '/characters', to: 'campaigns#characters'
+        post '/password', to: 'campaigns#password'
       end
 
 

@@ -28,7 +28,7 @@ class Api::V1::MapsController < ApplicationController
       tile_actions.each do |action|
         if action.keys.include?("draw")
           tile = Tile.find_by(x: action[:draw][0], y: action[:draw][1])
-          slot = Slot.create(tile_id: tile.id, map_id: map.id, canvasx: action[:draw][2], canvasy: action[:draw][3])
+          slot = Slot.create(tile_id: tile.id, map_id: map.id, canvasx: action[:draw][2], canvasy: action[:draw][3], sheet: action[:draw][4])
         else
           slot = Slot.create(map_id: map.id, canvasx: action[:erase][2], canvasy: action[:erase][3])
         end
@@ -55,7 +55,8 @@ class Api::V1::MapsController < ApplicationController
       tile_x: slot.tile.x,
       tile_y: slot.tile.y,
       canvas_x: slot.canvasx,
-      canvas_y: slot.canvasy
+      canvas_y: slot.canvasy,
+      sheet: slot.sheet
     }
   end
 
