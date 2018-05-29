@@ -17,10 +17,20 @@ class Api::V1::SessionsController < ApplicationController
       session[:start_y] = params[:start_y]
       session[:end_x] = params[:end_x]
       session[:end_y] = params[:end_y]
-      byebug
       session.save
+      campaign = Campaign.find(session[:campaign_id])
+      map = Map.find(session[:open_map_id])
+      CampaignChannel.broadcast_to(campaign, {
+        type: 'UPDATE_HIGHLIGHT',
+        payload: {session: session, map: prepare_map(map)}
+        })
       render json: session
     end
+  end
+
+  def destroy
+    session = Session.find(params[:id])
+    session.destroy()
   end
 
   def prepare_map(map)

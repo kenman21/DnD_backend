@@ -12,6 +12,7 @@ Slot.destroy_all
 Map.destroy_all
 Campaign.destroy_all
 Character.destroy_all
+Session.destroy_all
 
 [*0..15].each do |x|
   [*0..15].each do |y|
