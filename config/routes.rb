@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  mount ActionCable.server => '/cable'
+
   namespace :api do
     namespace :v1 do
       resources :users
@@ -7,18 +9,20 @@ Rails.application.routes.draw do
       resources :maps
       resources :tiles
       resources :campaigns
+      resources :sessions
 
       resources :campaigns, only: :show do
         get '/characters', to: 'campaigns#characters'
         post '/password', to: 'campaigns#password'
       end
 
-
       post '/users/login', to: 'users#login'
+
       resources :users, only: :show do
         get '/maps', to: 'users#maps'
         post '/characters', to: 'users#characters'
       end
+
     end
   end
 end
