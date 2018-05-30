@@ -34,4 +34,34 @@ class Api::V1::CampaignsController < ApplicationController
     end
   end
 
+  def session
+    session = Session.where(campaign_id: params[:campaign_id])
+    if session
+      map = Map.find(session[-1][:open_map_id])
+      render json: {activeSession: session, map: prepare_map(map)}
+    else
+      render json: {errors: "No Active Session"}
+    end
+  end
+
+  private
+
+  def prepare_map(map)
+    map_hash = {}
+    map_hash = {id: map.id, name: map.name}
+    map_hash[:slots] = map.slots.map {|slot| prepare_slot(slot)}
+    map_hash
+  end
+
+  def prepare_slot(slot)
+    slot_hash = {
+      id: slot.id,
+      tile_x: slot.tile.x,
+      tile_y: slot.tile.y,
+      canvas_x: slot.canvasx,
+      canvas_y: slot.canvasy,
+      sheet: slot.sheet
+    }
+  end
+
 end
