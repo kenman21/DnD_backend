@@ -19,7 +19,7 @@ class Api::V1::UsersController < ApplicationController
     if user && user.authenticate(params[:password].strip)
       render json: user
     else
-      render json: {errors: "There was an error"}
+      render json: {errors: "There was an error. Try again."}
     end
   end
 

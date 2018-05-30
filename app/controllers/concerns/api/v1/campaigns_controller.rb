@@ -36,7 +36,7 @@ class Api::V1::CampaignsController < ApplicationController
 
   def session
     session = Session.where(campaign_id: params[:campaign_id])
-    if session != nil
+    if session
       map = Map.find(session[-1][:open_map_id])
       render json: {activeSession: session, map: prepare_map(map)}
     else
