@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(version: 20180530203659) do
     t.integer "user_id"
     t.text "content"
     t.string "name"
+    t.string "character_name"
   end
 
   create_table "sessions", force: :cascade do |t|
