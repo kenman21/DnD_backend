@@ -7,6 +7,7 @@ class Api::V1::CampaignsController < ApplicationController
 
   def create
     campaign = Campaign.create(name: params[:name], creator_id: params[:creator_id],  password: params[:password].strip)
+    Chatroom.create(campaign_id: campaign[:id])
     render json: campaign
   end
 
@@ -42,6 +43,11 @@ class Api::V1::CampaignsController < ApplicationController
     else
       render json: {errors: "No Active Session"}
     end
+  end
+
+  def chatroom
+    campaign = Campaign.find(params[:campaign_id])
+    render json: {chatroom: campaign.chatroom, messages: campaign.chatroom.messages}
   end
 
   private

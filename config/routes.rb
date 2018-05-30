@@ -10,11 +10,13 @@ Rails.application.routes.draw do
       resources :tiles
       resources :campaigns
       resources :sessions
+      resources :messages
 
       resources :campaigns, only: :show do
         get '/characters', to: 'campaigns#characters'
         post '/password', to: 'campaigns#password'
         post '/session', to: 'campaigns#session'
+        post '/chatroom', to: 'campaigns#chatroom'
       end
 
       post '/users/login', to: 'users#login'
