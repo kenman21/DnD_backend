@@ -29,6 +29,9 @@ class Api::V1::MapsController < ApplicationController
         if action.keys.include?("draw")
           tile = Tile.find_by(x: action[:draw][0], y: action[:draw][1])
           slot = Slot.create(tile_id: tile.id, map_id: map.id, canvasx: action[:draw][2], canvasy: action[:draw][3], sheet: action[:draw][4])
+          Slot.where(canvasx: action[:draw][2], canvasy: action[:draw][3]).order(:id).reverse[2..-1].each do |slot|
+            slot.destroy()
+          end
         else
           slot = Slot.create(map_id: map.id, canvasx: action[:erase][2], canvasy: action[:erase][3])
         end

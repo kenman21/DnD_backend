@@ -4,6 +4,7 @@ class Campaign < ApplicationRecord
   has_many :maps, through: :settings
   has_many :characters
   has_one :session
+  has_one :chatroom
 
   has_secure_password
   validates :password_digest, presence: true

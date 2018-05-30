@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180528222724) do
+ActiveRecord::Schema.define(version: 20180530203659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,9 +105,21 @@ ActiveRecord::Schema.define(version: 20180528222724) do
     t.boolean "charismacheckbox", default: false
   end
 
+  create_table "chatrooms", force: :cascade do |t|
+    t.integer "campaign_id"
+  end
+
   create_table "maps", force: :cascade do |t|
     t.string "name"
     t.integer "user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer "chatroom_id"
+    t.integer "user_id"
+    t.text "content"
+    t.string "name"
+    t.string "character_name"
   end
 
   create_table "sessions", force: :cascade do |t|
