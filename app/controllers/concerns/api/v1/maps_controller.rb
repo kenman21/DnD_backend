@@ -29,11 +29,12 @@ class Api::V1::MapsController < ApplicationController
         if action.keys.include?("draw")
           tile = Tile.find_by(x: action[:draw][0], y: action[:draw][1])
           slot = Slot.create(tile_id: tile.id, map_id: map.id, canvasx: action[:draw][2], canvasy: action[:draw][3], sheet: action[:draw][4])
-          Slot.where(canvasx: action[:draw][2], canvasy: action[:draw][3]).order(:id).reverse[2..-1].each do |slot|
-            slot.destroy()
-          end
+          # Slot.where(canvasx: action[:draw][2], canvasy: action[:draw][3]).order(:id).reverse[2..-1].each do |slot|
+          #   slot.destroy()
+          # end
         else
-          slot = Slot.create(map_id: map.id, canvasx: action[:erase][2], canvasy: action[:erase][3])
+          tile = Tile.where(x:256, y:256).first
+          slot = Slot.create(tile_id: tile[:id], map_id: map.id, canvasx: action[:erase][2], canvasy: action[:erase][3])
         end
       end
     end
@@ -43,7 +44,7 @@ class Api::V1::MapsController < ApplicationController
 
   def prepare_usermaps(user)
     maps_array = []
-    user.maps.each do |map|
+    user.maps.order('name DESC').each do |map|
       map_hash = {}
       map_hash = {id: map.id, name: map.name}
       map_hash[:slots] = map.slots.map {|slot| prepare_slot(slot)}
