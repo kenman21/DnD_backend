@@ -26,6 +26,10 @@ Users on the home screen may also create a new campaign via the area labeled "Cr
 
 Campaign creators may use their maps to interact with their players via the Live Session feature, found on their campaign page. To open a live session, the campaign manager must press the "Create Live Session" button. Once they've done so, they will be shown all of the maps they've created on the left hand side of the screen, as well as a live chat on the right. Using the live session feature, a manager can choose for their players to only see a specific portion of the map. To do this, they need to click to open a previously created map. Then, they must click twice on the map, to create the highlighted rectangle that they want the players to see. After the campaign owner is satisfied with the region they've selected, they may click on the "Highlight Map" button, to have this region shown to the players. The campaign owner can deselect the region they've chosen by pressing ESC, and highlight a new region at any time. 
 
+A demo of the application can be found here:
+
+https://www.youtube.com/watch?v=uXyRM54LVK8&feature=youtu.be
+
 Authors
 
 Kenneth Lehr - kenman21
