@@ -14,7 +14,7 @@ To host a local server for the application run the following in terminal while i
 
 rails s
 
-Following this, proceed to the bananagram-frontend repository and follow the directions there. Link: https://github.com/kenman21/DnD_frontend
+Following this, proceed to the DnD_frontend repository and follow the directions there. Link: https://github.com/kenman21/DnD_frontend
 
 User Experience
 
